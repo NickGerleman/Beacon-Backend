@@ -126,7 +126,7 @@ post '/beacon'  do
 	return 401 unless @user
 	return 400 unless params[:latitude] && params[:longitude] && params[:text] && params[:radius] && params[:expires_at]
 
-	beacon = @user.beacons.new(params.delete_if {|k, v| k == 'photos'})
+	beacon = @user.beacons.new(params.reject {|k, v| k == 'photos'})
 	return 400 if beacon.invalid?
 
 	params[:photos].try(:each) do |photo| 
