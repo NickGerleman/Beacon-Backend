@@ -3,7 +3,6 @@ require "sinatra/activerecord"
 require "sinatra/json"
 require 'geokit'
 
-EARTH_RADIUS_KM = 6371
 Geokit::default_units = :kms
 
 class Session < ActiveRecord::Base
