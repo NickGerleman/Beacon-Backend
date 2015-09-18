@@ -24,6 +24,7 @@ GEM
     minitest (5.8.0)
     multi_json (1.11.2)
     pg (0.18.3)
+    puma (2.13.4)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -57,6 +58,7 @@ DEPENDENCIES
   bcrypt
   geokit
   pg
+  puma
   rake
   sinatra-activerecord
   sinatra-contrib
