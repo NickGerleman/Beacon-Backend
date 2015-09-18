@@ -159,7 +159,7 @@ put '/beacon/:id/vote' do
 end
 
 get '/photo/:id' do
-	photo = Photo.find(params[:id])
+	photo = Photo.find_by_id(params[:id])
 	return 404 unless photo
 
 	content_type :jpg
