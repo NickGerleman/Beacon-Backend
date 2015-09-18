@@ -84,7 +84,7 @@ class Photo < ActiveRecord::Base
 	belongs_to :beacon
 
 	def url
-		return "/photo/#{self.id}"
+		"/photo/#{self.id}"
 	end
 end
 
@@ -112,7 +112,7 @@ get '/beacon/'  do
 		if serialized_beacon["photos"].empty?
 			serialized_beacon.delete("photos")
 		else
-			serialized_beacon["photos"].map! {|photo| photo.url }
+			serialized_beacon["photos"].map! {|photo| photo["url"] }
 		end
 		serialized_beacon["my_vote"] = beacon.votes.select {|vote| vote.user.id == @user.id}[0].try(:value) || 0
 		
