@@ -99,7 +99,8 @@ before do
 end
 
 get '/beacon/'  do
-	return 401 unless @user && params[:latitude] && params[:longitude]
+	return 401 unless @user 
+	return 400 unless params[:latitude] && params[:longitude]
 
 	beacons = Beacon.visibible_from(Geokit::LatLng.new(params[:latitude], params[:longitude]))
 
@@ -122,10 +123,11 @@ get '/beacon/'  do
 end
 
 post '/beacon'  do
-	return 401 unless @user && params[:latitude] && params[:longitude] && params[:text] && params[:radius] && params[:expires_at]
+	return 401 unless @user
+	return 400 unless params[:latitude] && params[:longitude] && params[:text] && params[:radius] && params[:expires_at]
 
 	beacon = @user.beacons.new(params.delete_if {|k, v| k == 'photos'})
-	return 401 if beacon.invalid?
+	return 400 if beacon.invalid?
 
 	params[:photos].try(:each) do |photo| 
 		beacon.photos.new(data: photo[:tempfile].read)
