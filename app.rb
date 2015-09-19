@@ -124,6 +124,9 @@ end
 
 post '/beacon'  do
 	return 401 unless @user
+
+	puts params
+
 	return 400 unless params[:latitude] && params[:longitude] && params[:text] && params[:radius] && params[:expires_at]
 
 	beacon = @user.beacons.new(params.reject {|k, v| k == 'photos'})
