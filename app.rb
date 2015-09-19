@@ -134,7 +134,7 @@ post '/beacon'  do
 	end
 
 	beacon.save
-	201
+	json success: 'waffles'
 end
 
 put '/beacon/:id/vote' do
@@ -155,7 +155,7 @@ put '/beacon/:id/vote' do
 	existing_vote.destroy_all if existing_vote
 
 	beacon.votes.create(value: value, user: @user) unless value == 0
-	200
+	json success: 'waffles'
 end
 
 get '/photo/:id' do
